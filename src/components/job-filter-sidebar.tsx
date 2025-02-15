@@ -8,6 +8,7 @@ import { Button } from "./ui/button";
 import { jobFilterSchema, TJobFilterValues } from "@/validation/validation";
 import { redirect } from "next/navigation";
 import { ClientSideFilter } from "./client-side-filter";
+import FormSubmitButton from "./form-submit-button";
 
 
 
@@ -43,8 +44,8 @@ const JobFilterSidebar : React.FC<TJobFilterSidebarProps> = async ({defaultValue
 
   return (
     <aside className="sticky top-0 h-fit rounded-lg border bg-background p-4 md:w-[260px]">
-      {/* <ClientSideFilter> */}
-        <form action={filterJobs}>
+      <ClientSideFilter>
+        <form action={filterJobs} key={JSON.stringify(defaultValues)}>
           <div className="space-y-4">
             <div className="flex flex-col gap-2">
               <Label htmlFor="query">Search</Label>
@@ -78,12 +79,12 @@ const JobFilterSidebar : React.FC<TJobFilterSidebarProps> = async ({defaultValue
                 Remote Jobs
               </label>
             </div>
-            <Button type="submit" className="w-full">
+            <FormSubmitButton className="w-full">
               Filter Jobs
-            </Button>
+            </FormSubmitButton>
           </div>
         </form>
-      {/* </ClientSideFilter> */}
+      </ClientSideFilter>
     </aside>
   );
 };

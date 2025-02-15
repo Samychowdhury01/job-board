@@ -1,0 +1,26 @@
+"use client";
+import React from "react";
+import { Button } from "./ui/button";
+import { useFormStatus } from "react-dom";
+import { Loader } from "lucide-react";
+
+const FormSubmitButton = (
+  props: React.ButtonHTMLAttributes<HTMLButtonElement>,
+) => {
+  const { pending } = useFormStatus();
+  return (
+    <Button
+      {...props}
+      type="submit"
+      className="w-full"
+      disabled={props.disabled || pending}
+    >
+      <span className="flex items-center justify-center gap-1">
+        {pending && <Loader size={16} className="animate-spin" />}
+        {props.children}
+      </span>
+    </Button>
+  );
+};
+
+export default FormSubmitButton;
