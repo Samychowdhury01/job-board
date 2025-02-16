@@ -2,8 +2,10 @@ import JobListItem from "@/components/job-list-item";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import React from "react";
+import { unstable_noStore as noStore } from 'next/cache';
 
 const AdminPage = async () => {
+  noStore()
   const unapprovedJobs = await prisma.job.findMany({
     where: {
       approved: false,
