@@ -25,19 +25,6 @@ const getJob = cache(async (slug: string) => {
 });
 
 
-// export async function generateStaticParams() {
-//   const jobs = await prisma.job.findMany({
-//     where: {
-//       approved : true
-//     },
-//     select: {
-//       slug: true
-//       }
-//   });
-//   return jobs.map(({slug}) => slug);
-// }
-
-// metadata for this page
 
 export async function generateMetadata({
   params,
