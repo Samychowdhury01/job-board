@@ -9,6 +9,7 @@ type TPageProps = {
     type?: string
     location?: string
     remote?: string
+    page?: string
   }>
 }
 
@@ -33,7 +34,7 @@ export async function generateMetadata(
     query: params.query,
     type: params.type,
     location: params.location,
-    remote: params.remote === 'true'
+    remote: params.remote === 'true',
   };
 
   const title = getTitle(filterValues);
@@ -45,7 +46,7 @@ export async function generateMetadata(
 }
 
 export default async function HomePage({searchParams}: TPageProps) {
-  const {query, type, location, remote} = await searchParams;
+  const {query, type, location, remote, page} = await searchParams;
   const filterValues: TJobFilterValues = {
     query,
     type,
@@ -63,7 +64,10 @@ export default async function HomePage({searchParams}: TPageProps) {
       </div>
       <section className="flex flex-col md:flex-row gap-4">
         <JobFilterSidebar defaultValues={filterValues}/>
-        <JobResult filterValues={filterValues}/>
+        <JobResult 
+        filterValues={filterValues}
+        page={page ? parseInt(page) : undefined}
+        />
       </section>
     </main>
   );
